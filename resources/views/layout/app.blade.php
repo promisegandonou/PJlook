@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>PJlook - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -38,7 +38,11 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
+<<<<<<< HEAD
                 <div class="sidebar-brand-text mx-3">PJlook<sup>2.0</sup></div>
+=======
+                <div class="sidebar-brand-text mx-3">Gérer les projet <sup>1.0</sup></div>
+>>>>>>> c1a68c8 (Premier commit)
             </a>
 
             <!-- Divider -->
@@ -75,11 +79,15 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+<<<<<<< HEAD
             
+=======
+           >
+>>>>>>> c1a68c8 (Premier commit)
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+           
 
+<<<<<<< HEAD
             <!-- Heading -->
            
 
@@ -100,6 +108,11 @@
 
             <!-- Sidebar Message -->
           
+=======
+          
+
+           
+>>>>>>> c1a68c8 (Premier commit)
 
         </ul>
         <!-- End of Sidebar -->
@@ -150,11 +163,11 @@
                         @php $notifications = auth()->user()->notifications;@endphp
                           -->
 
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        <!--<li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <span class="badge badge-danger badge-counter">{{ auth()->user()->unreadNotifications->count() }}</span>
+                                <span class="badge badge-danger badge-counter">{{ auth()->user()->notifications->count() }}</span>
                             </a>
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">Centre de notifications</h6>
@@ -173,7 +186,7 @@
                                 @endforeach
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Voir toutes les notifications</a>
                             </div>
-                        </li>
+                        </li> -->                       
 
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -184,7 +197,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->personne->nom}} {{Auth::user()->personne->prenom}}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="{{asset('assets/img/undraw_profile.svg')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -201,8 +214,13 @@
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>-->
+<<<<<<< HEAD
                                 <div class="dropdown-item">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+=======
+                                <div class="dropdown-divider">
+
+>>>>>>> c1a68c8 (Premier commit)
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
 
@@ -211,8 +229,11 @@
                                     </button>
                                 </form>
                                 </div>
+<<<<<<< HEAD
 
                                
+=======
+>>>>>>> c1a68c8 (Premier commit)
 
                             </div>
                         </li>
