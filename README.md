@@ -101,4 +101,12 @@ Certaines actions, comme **modifier le projet, ajouter une tâche ou inviter des
 
 
 
+## Exécuter les commandes  php artisan migrate
+## ensuite exécuter la commande php artisan migrate db:seed
+
+
+
+## Démarer le projet avec php artisan serve
+
+
 
