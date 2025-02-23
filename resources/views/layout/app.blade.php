@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PJlook - Dashboard</title>
+    <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -38,7 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Gérer les projet <sup>1.0</sup></div>
+                <div class="sidebar-brand-text mx-3">PJlook<sup>2.0</sup></div>
             </a>
 
             <!-- Divider -->
@@ -75,13 +75,31 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-           >
+            
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
            
 
+            <!-- Nav Item - Pages Collapse Menu -->
           
 
+            <!-- Nav Item - Charts -->
+            
+
+            <!-- Nav Item - Tables -->
            
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+           
+
+            <!-- Sidebar Message -->
+          
 
         </ul>
         <!-- End of Sidebar -->
@@ -101,30 +119,19 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
+                       <!-- <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
-                            </a>
+                            </a> -->
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                           <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
@@ -141,13 +148,13 @@
                             </div>
                         </li>
                         @php $notifications = auth()->user()->notifications;@endphp
+                          -->
 
-
-                        <!--<li class="nav-item dropdown no-arrow mx-1">
+                        <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <span class="badge badge-danger badge-counter">{{ auth()->user()->notifications->count() }}</span>
+                                <span class="badge badge-danger badge-counter">{{ auth()->user()->unreadNotifications->count() }}</span>
                             </a>
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">Centre de notifications</h6>
@@ -166,7 +173,7 @@
                                 @endforeach
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Voir toutes les notifications</a>
                             </div>
-                        </li> -->                       
+                        </li>
 
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -177,7 +184,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->personne->nom}} {{Auth::user()->personne->prenom}}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset('assets/img/undraw_profile.svg')}}">
+                                    src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -194,16 +201,18 @@
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>-->
-                                <div class="dropdown-divider">
-
+                                <div class="dropdown-item">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
 
-                                    <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                                    <button type="submit" class="dropdown-item">
                                         {{ __('Log Out') }}
                                     </button>
                                 </form>
                                 </div>
+
+                               
 
                             </div>
                         </li>

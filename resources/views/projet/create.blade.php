@@ -7,6 +7,11 @@
 
 
 <div>
+@if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
     <form action="{{route('projet.store')}}" method="post">
         @csrf
         <div class="">

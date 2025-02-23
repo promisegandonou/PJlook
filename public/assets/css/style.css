@@ -12,12 +12,12 @@ body{
     justify-content:center;
     align-items:center;
     min-height:100vh;
-    background:#4234c5;
+    background:#34a3c5;
     transition:1s;
 }
 
 .slide{
-    background:#db6b76;
+    background:#5fd1a5;
 
 }
 .container{
@@ -139,7 +139,7 @@ cursor:pointer;
 font-weight:500;
 }
 .formBx .signupform form input[type="submit"]{
- background:#c4444f;;
+ background:#44c44a;;
 border:none;
 color:#fff;
 width: 100%;

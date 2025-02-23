@@ -74,7 +74,7 @@ class ProjetController extends Controller
 
             DB::commit();
 
-            return back()->with('success');
+            return back()->with('success','Projet créé avec succès');
         } catch (\Exception $e) {
             DB::rollBack(); // Annule toutes les modifications en cas d'erreur
             return back()->withErrors(['error' => 'Une erreur est survenue. Veuillez réessayer.']);

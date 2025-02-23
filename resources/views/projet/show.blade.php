@@ -34,24 +34,24 @@
             <div class="tab-content" id="projetTabsContent">
                 <div class="tab-pane fade show active" id="info">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="card-title text-primary fs-4">
-                        <i class="fas fa-chart-line me-2"></i> Statut Actuel :
-                        <span class="badge bg-success fs-5">{{ $projet->statutActuel->statut->libelle }}</span>
-                    </h5>
+                        <h5 class="card-title text-primary fs-4">
+                            <i class="fas fa-chart-line me-2"></i> Statut Actuel :
+                            <span class="badge bg-success fs-5">{{ $projet->statutActuel->statut->libelle }}</span>
+                        </h5>
 
-@can('manage_project_task', $projet)
-                    <button class="btn btn-info mt-3" id="editProjectBtn"
-                                data-toggle="modal" data-target="#editProjectModal">
-                                <i class="fas fa-edit"></i> Modifier le projet
-                            </button>
-                            @endcan
-                 </div>
+                        @can('manage_project_task', $projet)
+                        <button class="btn btn-info mt-3" id="editProjectBtn"
+                            data-toggle="modal" data-target="#editProjectModal">
+                            <i class="fas fa-edit"></i> Modifier le projet
+                        </button>
+                        @endcan
+                    </div>
 
                     <div class="tab-pane fade show active" id="info">
                         <!-- Bouton pour modifier le statut du projet -->
-                        
+
                         <div class="tab-pane fade show active" id="info">
-                            
+
 
                             <div class="row g-4">
                                 <!-- Carte Titre -->
@@ -112,7 +112,7 @@
                 </div>
 
                 <div class="tab-pane fade" id="taches">
-                   
+
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="card-title text-warning fs-4">
@@ -141,28 +141,7 @@
                             </table>
                         </div>
                     </div>
-                    @php
-                    $borderColors = ['border-primary', 'border-success', 'border-warning', 'border-info', 'border-danger'];
-                    @endphp
-
-                    @foreach ($projet->taches as $tache)
-                    <h6 class="mt-4 font-weight-bold">{{ $tache->titre }}</h6>
-                    <div class="row">
-                        @foreach ($tache->fichiers as $fichier)
-                        @php $borderColor = $borderColors[$loop->index % count($borderColors)]; @endphp
-                        <div class="col-md-4">
-                            <div class="card shadow-lg mb-3 border {{ $borderColor }} file-card">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title text-truncate text-dark">{{ $fichier->nom }}</h6>
-                                    <a href="{{ route('fichiers.download', $fichier->id) }}" class="btn btn-outline-primary btn-sm">
-                                        <i class="fas fa-download"></i> Télécharger
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    @endforeach
+                   
 
 
 
@@ -170,7 +149,7 @@
                 </div>
 
                 <div class="tab-pane fade" id="fichiers">
-                @if (session('success'))
+                    @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
@@ -213,31 +192,37 @@
 
 
                 <div class="tab-pane fade" id="membres">
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <h5 class="card-title text-success fs-4"><i class="fas fa-user-friends me-2"></i> Membres du Projet</h5>
-                    @can('invite_member', $projet)
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
 
-                    <button class="btn btn-success" data-toggle="modal" data-target="#new-member" invite-btn>
-                        <i class="fas fa-plus"></i> Inviter
-                    </button>
-                    @endcan
+                        <h5 class="card-title text-success fs-4"><i class="fas fa-user-friends me-2"></i> Membres du Projet</h5>
+                        @can('invite_member', $projet)
+
+                        <button class="btn btn-success" data-toggle="modal" data-target="#new-member" invite-btn>
+                            <i class="fas fa-plus"></i> Inviter
+                        </button>
+                        @endcan
                     </div>
                     <ul class="list-group list-group-flush mt-3">
                         @foreach ($projet->membres as $membre)
                         <li class="list-group-item py-3 fs-5 d-flex justify-content-between align-items-center">
-    {{ $membre->nom }} {{ $membre->prenom }}
-    
-    @php
-        $fonction = $membre->actif_fonctions($projet->id)->first();
-    @endphp
+                            {{ $membre->nom }} {{ $membre->prenom }}
 
-    @if ($fonction)
-        <span class="badge bg-primary text-white fs-5 px-3 py-2">{{ $fonction->libelle }}</span>
-    @else
-        <span class="text-muted">Aucune fonction attribuée</span>
-    @endif
-</li>
+                            @php
+                            $fonction = $membre->actif_fonctions($projet->id)->first();
+                            @endphp
+
+                            @if ($fonction)
+                            <span class="badge bg-primary text-white fs-5 px-3 py-2">{{ $fonction->libelle }}</span>
+                            @else
+                            <span class="text-muted">Aucune fonction attribuée</span>
+                            @endif
+                        </li>
 
                         @endforeach
                     </ul>
@@ -355,8 +340,6 @@
 </script>
 
 <script>
-
-
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
@@ -440,25 +423,25 @@
 
 
         // SUPPRIMER une tâche
-    $(document).on('click', '.btn-delete', function () {
-        let taskId = $(this).data('id');
-        if (confirm("Voulez-vous vraiment supprimer cette tâche ?")) {
-            $.ajax({
-                url: '/taches/' + taskId, 
-                type: 'DELETE',
-                data: {
-                    _token: '{{ csrf_token() }}' // Protection CSRF
-                },
-                success: function (response) {
-                    alert(response.message);
-                    $('#dataTable').DataTable().ajax.reload(); // Recharge le tableau
-                },
-                error: function (xhr) {
-                    alert("Une erreur s'est produite !");
-                }
-            });
-        }
-    });
+        $(document).on('click', '.btn-delete', function() {
+            let taskId = $(this).data('id');
+            if (confirm("Voulez-vous vraiment supprimer cette tâche ?")) {
+                $.ajax({
+                    url: '/taches/' + taskId,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}' // Protection CSRF
+                    },
+                    success: function(response) {
+                        alert(response.message);
+                        $('#dataTable').DataTable().ajax.reload(); // Recharge le tableau
+                    },
+                    error: function(xhr) {
+                        alert("Une erreur s'est produite !");
+                    }
+                });
+            }
+        });
 
 
 
@@ -479,9 +462,6 @@
                 });
         });
     });
-
-   
-
 </script>
 
 <script>
@@ -504,21 +484,21 @@
             formData.append("_method", "PUT");
 
             fetch("{{ route('projet.update', ':id') }}".replace(':id', projetId), {
-                method: "POST",
-              
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Réponse du serveur :", data);
-                if (data.success) {
-                    alert("Projet mis à jour !");
-                    location.reload(); // Recharge la page pour voir les changements
-                } else {
-                    alert("Erreur lors de la mise à jour.");
-                }
-            })
-            .catch(error => console.error("Erreur :", error));
+                    method: "POST",
+
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Réponse du serveur :", data);
+                    if (data.success) {
+                        alert("Projet mis à jour !");
+                        location.reload(); // Recharge la page pour voir les changements
+                    } else {
+                        alert("Erreur lors de la mise à jour.");
+                    }
+                })
+                .catch(error => console.error("Erreur :", error));
         });
     });
 </script>
